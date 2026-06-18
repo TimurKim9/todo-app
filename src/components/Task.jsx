@@ -1,12 +1,22 @@
-function Task({ description, created, completed, editing }) {
+function Task({
+  id,
+  description,
+  completed,
+  editing,
+  toggleCompleted,
+}) {
   return (
     <li className={`${completed ? 'completed' : ''} ${editing ? 'editing' : ''}`}>
       <div className="view">
-        <input className="toggle" type="checkbox" />
+        <input
+          className="toggle"
+          type="checkbox"
+          checked={completed}
+          onChange={() => toggleCompleted(id)}
+        />
 
         <label>
           <span className="description">{description}</span>
-          <span className="created">{created}</span>
         </label>
 
         <button className="icon icon-edit"></button>
