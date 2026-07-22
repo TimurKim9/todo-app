@@ -11,22 +11,42 @@ function App() {
       id: 1,
       description: 'Completed task',
       completed: true,
-      editing: false,
     },
     {
       id: 2,
       description: 'Editing task',
       completed: false,
-      editing: true,
     },
     {
       id: 3,
       description: 'Active task',
       completed: false,
-      editing: false,
     },
   ]);
 
+  // const editTask = (id) => {
+  //   setTasks(
+  //     tasks.map((task) =>
+  //       task.id === id
+  //         ? { ...task, editing: !task.editing }
+  //         : task
+  //     )
+  //   );
+  // };
+  const updateTask = (id, description) => {
+    setTasks(
+      tasks.map((task) =>
+        task.id === id
+          ? { ...task, description, editing: false }
+          : task
+      )
+    );
+  };
+  const deleteTask = (id) => {
+    setTasks(
+      tasks.filter((task) => task.id !== id)
+    );
+  };
   const toggleCompleted = (id) => {
     setTasks(
       tasks.map((task) =>
@@ -48,7 +68,11 @@ function App() {
         <TaskList
           tasks={tasks}
           toggleCompleted={toggleCompleted}
+          // editTask={editTask}
+          updateTask={updateTask}
+          deleteTask={deleteTask}
         />
+
         <Footer />
       </section>
     </section>

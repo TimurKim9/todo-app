@@ -1,6 +1,11 @@
 import Task from './Task';
 
-function TaskList({ tasks, toggleCompleted }) {
+function TaskList({
+  tasks,
+  toggleCompleted,
+  updateTask,
+  deleteTask,
+}) {
   return (
     <ul className="todo-list">
       {tasks.map((task) => (
@@ -9,8 +14,9 @@ function TaskList({ tasks, toggleCompleted }) {
           id={task.id}
           description={task.description}
           completed={task.completed}
-          editing={task.editing}
           toggleCompleted={toggleCompleted}
+          updateTask={updateTask}
+          deleteTask={deleteTask}
         />
       ))}
     </ul>
