@@ -14,6 +14,7 @@ function TaskList({
           id={task.id}
           description={task.description}
           completed={task.completed}
+          editing={task.editing}
           toggleCompleted={toggleCompleted}
           updateTask={updateTask}
           deleteTask={deleteTask}
