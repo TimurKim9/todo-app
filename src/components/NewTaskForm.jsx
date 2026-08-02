@@ -1,6 +1,9 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 
-function NewTaskForm({ addTask }) {
+function NewTaskForm({
+  addTask = () => {},
+})  {
   const [text, setText] = useState('');
 
   const handleKeyDown = (event) => {
@@ -21,5 +24,9 @@ function NewTaskForm({ addTask }) {
     />
   );
 }
+
+NewTaskForm.propTypes = {
+  addTask: PropTypes.func,
+};
 
 export default NewTaskForm;

@@ -1,11 +1,15 @@
 import { useState } from 'react';
+import { formatDistanceToNow } from 'date-fns';
+import PropTypes from 'prop-types';
+
 function Task({
-  id,
-  description,
-  completed,
-  toggleCompleted,
-  updateTask,
-  deleteTask,
+  id = 0,
+  description = '',
+  completed = false,
+  created = new Date(),
+  toggleCompleted = () => {},
+  updateTask = () => {},
+  deleteTask = () => {},
 }) {
   const [editing, setEditing] = useState(false);
   
@@ -25,6 +29,9 @@ function Task({
 
         <label>
           <span className="description">{description}</span>
+          <span className="created">
+            created {formatDistanceToNow(new Date(created))} ago
+          </span>
         </label>
 
         <button
@@ -54,5 +61,18 @@ function Task({
     </li>
   );
 }
+
+Task.propTypes = {
+  id: PropTypes.number.isRequired,
+  description: PropTypes.string.isRequired,
+  completed: PropTypes.bool,
+  created: PropTypes.oneOfType([
+    PropTypes.instanceOf(Date),
+    PropTypes.string,
+  ]),
+  toggleCompleted: PropTypes.func,
+  updateTask: PropTypes.func,
+  deleteTask: PropTypes.func,
+};
 
 export default Task;

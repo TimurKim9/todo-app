@@ -1,10 +1,11 @@
 import Task from './Task';
+import PropTypes from 'prop-types';
 
 function TaskList({
-  tasks,
-  toggleCompleted,
-  updateTask,
-  deleteTask,
+  tasks = [],
+  toggleCompleted = () => {},
+  updateTask = () => {},
+  deleteTask = () => {},
 }) {
   return (
     <ul className="todo-list">
@@ -14,7 +15,7 @@ function TaskList({
           id={task.id}
           description={task.description}
           completed={task.completed}
-          editing={task.editing}
+          created={task.created}
           toggleCompleted={toggleCompleted}
           updateTask={updateTask}
           deleteTask={deleteTask}
@@ -23,5 +24,12 @@ function TaskList({
     </ul>
   );
 }
+
+TaskList.propTypes = {
+  tasks: PropTypes.array.isRequired,
+  toggleCompleted: PropTypes.func,
+  updateTask: PropTypes.func,
+  deleteTask: PropTypes.func,
+};
 
 export default TaskList;

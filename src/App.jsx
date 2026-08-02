@@ -17,7 +17,7 @@ function App() {
           id: task.id,
           description: task.title,
           completed: task.completed,
-          editing: false,
+          created: new Date(),
         }));
 
         setTasks(tasks);
@@ -61,7 +61,7 @@ function App() {
       id: Date.now(),
       description,
       completed: false,
-      editing: false,
+      created: new Date(),
     };
 
     setTasks([newTask, ...tasks]);
